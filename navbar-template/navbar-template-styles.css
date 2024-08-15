@@ -1,0 +1,129 @@
+:root{
+
+    /* color variables */
+    --sa-background-color: hsl(0, 0%, 0%);
+    --sa-card-background: hsl(341, 39%, 76%);
+    --sa-font-clr-main: hsl(0, 0%, 0%);
+    --sa-btn-clr:hsl(341, 39%, 56%);
+    --sa-btn-hover:hsl(341, 39%, 46%);
+    --sa-btn-hover-border:hsl(341, 39%, 26%);
+    --sa-card-title-after:linear-gradient(90deg, red, yellow);
+    --sa-card-gradient-border:repeating-conic-gradient(
+        red 0%,
+        yellow 15%,
+        red 33%
+      );
+
+      /* root styles */
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 62.5%;
+      color: var(--sa-font-clr-main);
+      font-size: 62.5%;
+}
+
+body{
+    font-size: 1.2rem;
+    /* background-image: url(images/body-background.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+
+.flex{
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+/* primary header */
+.logo{
+    height: 7rem;
+    filter: grayscale(1);
+}
+
+.primary-header{
+    --gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--sa-card-background);
+
+}
+
+.mobile-nav-toggle{
+    display: none;
+}
+
+.primary-navigation{
+    
+    list-style: none;
+    padding: 0;
+    padding-right: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: hsla(0, 0%, 0%, 0);
+   
+}
+@supports (backdrop-filter: blur(1rem)){
+    .primary-navigation{
+        background: hsl(0, 0%, 0%, 0.1);
+        backdrop-filter: blur(1rem);
+    }
+}
+
+.primary-navigation a{
+    color: var(--sa-font-clr-main);
+    text-decoration: none;
+    
+}
+
+.primary-navigation a span{
+    font-weight: 700;
+    margin-inline-end: 0.7rem;
+}
+
+@media (max-width: 600px){
+    .primary-navigation{
+        --gap:5rem;
+
+        position: fixed;
+        z-index: 1000;
+        inset: 0 0 0 30%;
+        flex-direction: column;
+        padding: min(30vh, 10rem) 2rem;
+        background: hsl(0, 0%, 0%, 0.5);
+        
+        transform: translateX(100%);
+        transition: transform 300ms ease;
+
+    }
+
+    .primary-navigation a{
+        color: white;
+    }
+
+    .primary-navigation[data-visible="true"]{
+        transform: translateX(0%);
+    }
+
+    .mobile-nav-toggle{
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        background-color: transparent;
+        background: url(images/hamburger-menu.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1rem;
+        color: black;
+        width: 2rem;
+        aspect-ratio: 1;
+        touch-action: 2rem;
+        right: 2rem;
+        border: 0;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"]{
+        background-image: url(images/menu-close-btn.png);
+        background-size: cover;
+    }
+}

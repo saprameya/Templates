@@ -1,0 +1,222 @@
+:root{
+
+    /* color variables */
+    --sa-background-color: hsl(0, 0%, 0%);
+    --sa-card-background: hsl(341, 39%, 76%);
+    --sa-font-clr-main: hsl(0, 0%, 0%);
+    --sa-btn-clr:hsl(341, 39%, 56%);
+    --sa-btn-hover:hsl(341, 39%, 46%);
+    --sa-btn-hover-border:hsl(341, 39%, 26%);
+    --sa-card-title-after:linear-gradient(90deg, red, yellow);
+    --sa-card-gradient-border:repeating-conic-gradient(
+        red 0%,
+        yellow 15%,
+        red 33%
+      );
+
+      /* root styles */
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 62.5%;
+      background-color: var(--sa-background-color);
+}
+
+*{
+    font-size: 1.5rem;
+    
+}
+
+/* Styles that apply to all cards */
+
+.card-container{
+    display: grid;
+    row-gap: 10rem;
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+    width: 30%;
+    margin: auto;
+}
+
+.card{
+    background-color: var(--sa-card-background);
+    margin: 0.5rem;
+    padding: 0.5rem;
+    padding-bottom: 1.2rem;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.img-container{
+    position: relative;
+    justify-content: right;
+}
+
+/* .img-container::after{
+    content: "Parveender Lamba";
+    position: absolute;
+    inset: 90% 0 90% 70%;
+    font-size: 1rem;
+} */
+
+.card-img{
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+/* .card-img:hover + .img-attr{
+    display: block;
+} */
+
+
+.img-attr a{
+    display: block;
+    text-align: right;
+    width: 100%;
+    font-size: 0.8  rem;
+    position: absolute;
+    transform: translate(-00.5rem,-2rem);
+    color: var(--sa-font-clr-main);
+
+}
+
+.sa-btn {
+    text-decoration: none;
+    color: var(--sa-font-clr-main);
+    background-color:  var(--sa-btn-clr);
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.sa-btn:focus,
+.sa-btn:hover{
+    background-color:var(--sa-btn-hover);
+    border: var(--sa-btn-hover-border);
+}
+
+.card-title{
+    position: relative;
+    width: max-content;
+}
+.card-title::after{
+    content: "";
+    inset: 100% 0;
+    height: 0.5rem;
+    background: var(--sa-card-title-after);
+    position: absolute;
+    border-radius: inherit;
+    
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s ease;
+}
+
+.card:focus-within .card-title::after,
+.card:hover .card-title::after{
+    transform: scaleX(1);
+}
+
+
+/* Styles that apply to static gradient border */
+.card-gradient-border::before,
+.card-gradient-border::after{
+    
+    content: "";
+    background-image: var(--sa-card-gradient-border);
+    display: block;
+    position: absolute;
+    inset: -0.5rem;
+    border-radius: inherit;
+    z-index: -1;
+    
+}
+
+.card-gradient-border::after{
+    filter: blur(1.5rem);
+    inset: -10px;
+} 
+
+
+
+/* Styles that apply to animated border on hover/focus-within */
+
+.card-animated-border{
+    position: relative;
+
+}
+
+.card-animated-border::before,
+.card-animated-border::after{
+    display: none;
+    content: "";
+    position: absolute;
+    inset: -1rem;
+    background-image: repeating-conic-gradient(
+        from var(--gradient-angle),
+        red 0%,
+        yellow 15%,
+        red 33%
+      );
+      border-radius: inherit;
+      animation: rotation 4s linear infinite;
+      z-index: -1;
+}
+
+.card-animated-border::after{
+    filter: blur(1.5rem);
+}
+
+.card-animated-border:focus-within::before,
+.card-animated-border:focus-within::after,
+.card-animated-border:hover::before,
+.card-animated-border:hover::after{
+    display: block;
+}
+
+
+@property --gradient-angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotation {
+    0%{--gradient-angle: 0deg;}
+    100%{--gradient-angle: 360deg;}
+}
+
+
+/* Mobile device styles */
+@media screen and  (max-width: 480px){
+    *{
+        font-size: 1rem;
+    }
+    
+    .card-container{
+        grid-template-columns: 1fr;
+        place-content: center;
+    }
+    .card{
+        width: 100%;
+    }
+    .img-attr{
+        display: block;
+    }
+    
+}
+
+@media screen and  (min-width: 481px) and (max-width: 1024px){
+    .card-container{
+        grid-template-columns: 1fr;
+        place-content: center;
+    }
+    .card{
+        width: 100%;
+    }
+    .img
+    .img-attr{
+        display: block;
+    }
+    
+}
